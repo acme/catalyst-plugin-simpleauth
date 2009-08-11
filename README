@@ -4,14 +4,14 @@ NAME
 SYNOPSIS
       # in your Catalyst application:
       use Catalyst qw(SimpleAuth);
-  
-      __PACKAGE__->config(
+      
+  __PACKAGE__->config(
           simpleauth => { class => 'Users' },
       );
-  
-      # in your sign up code
-  
-      unless( $c->sign_up(
+      
+  # in your sign up code
+      
+  unless( $c->sign_up(
                 {   username => $email,
                     password => $password,
                 }
@@ -22,8 +22,8 @@ SYNOPSIS
       ...
 
       # in your sign in code
-  
-      my $user = $c->user; 
+      
+  my $user = $c->user; 
       if ($c->sign_in(
               {   username => $email,
                   password => $password,
@@ -72,8 +72,9 @@ AUTHOR
     Leon Brocard <acme@astray.com>.
 
 COPYRIGHT
-    Copyright (C) 2008, Leon Brocard
+    Copyright (C) 2008-9, Leon Brocard
 
+LICENSE
     This module is free software; you can redistribute it or modify it under
     the same terms as Perl itself.
 

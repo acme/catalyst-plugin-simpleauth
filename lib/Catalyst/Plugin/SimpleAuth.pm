@@ -195,7 +195,7 @@ Leon Brocard <acme@astray.com>.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2008, Leon Brocard
+Copyright (C) 2008-9, Leon Brocard
 
 =head1 LICENSE
 
