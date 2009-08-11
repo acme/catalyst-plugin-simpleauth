@@ -1,5 +1,8 @@
 CHANGES file for Catalyst::Plugin::CookiedSession:
 
+0.33
+  - only print debugging messages under debug
+
 0.32 Wed Sep 10 20:42:44 BST 2008
   - added machine- and human-readable license
 

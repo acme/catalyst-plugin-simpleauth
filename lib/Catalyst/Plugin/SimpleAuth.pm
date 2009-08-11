@@ -13,8 +13,11 @@ BEGIN {
 
 sub setup {
     my $c = shift;
-    $c->_throw_error('SimpleAuth: this module requires the Session or CookiedSession plugin')
-        unless $c->isa('Catalyst::Plugin::Session') || $c->isa('Catalyst::Plugin::CookiedSession');
+    $c->_throw_error(
+        'SimpleAuth: this module requires the Session or CookiedSession plugin'
+        )
+        unless $c->isa('Catalyst::Plugin::Session')
+            || $c->isa('Catalyst::Plugin::CookiedSession');
 }
 
 sub _throw_error {
@@ -40,15 +43,16 @@ sub prepare_action {
         if ($user) {
             $c->log->debug(
                 "SimpleAuth: found user_id $simpleauth_id in session and user"
-            );
+            ) if $c->debug;
             $c->stash->{user} = $user;
         } else {
             $c->log->debug(
                 "SimpleAuth: found user_id $simpleauth_id in session, but no user"
-            );
+            ) if $c->debug;
         }
     } else {
-        $c->log->debug("SimpleAuth: did not find user_id in session");
+        $c->log->debug("SimpleAuth: did not find user_id in session")
+            if $c->debug;
     }
 
     $c->NEXT::prepare_action(@_);
@@ -59,17 +63,19 @@ sub sign_up {
     my $model = $c->_simpleauth_model;
     $conf->{password} = sha1_hex( $conf->{password} );
     if ( $model->single( { username => $conf->{username} } ) ) {
-        $c->log->debug("SimpleAuth sign_up: user already exists");
+        $c->log->debug("SimpleAuth sign_up: user already exists")
+            if $c->debug;
         return 0;
     }
     my $user = $model->create($conf);
     if ($user) {
-        $c->log->debug("SimpleAuth sign_up: signed up user");
+        $c->log->debug("SimpleAuth sign_up: signed up user") if $c->debug;
         $c->session->{_simpleauth_id} = $user->id;
         $c->stash->{user}             = $user;
         return 1;
     } else {
-        $c->log->debug("SimpleAuth sign_up: did not sign up user");
+        $c->log->debug("SimpleAuth sign_up: did not sign up user")
+            if $c->debug;
         return 0;
     }
 }
@@ -82,12 +88,13 @@ sub sign_in {
     my $user
         = $model->single( { username => $username, password => $password } );
     if ($user) {
-        $c->log->debug("SimpleAuth sign_in: signed in user");
+        $c->log->debug("SimpleAuth sign_in: signed in user") if $c->debug;
         $c->session->{_simpleauth_id} = $user->id;
         $c->stash->{user}             = $user;
         return 1;
     } else {
-        $c->log->debug("SimpleAuth sign_in: did not sign in user");
+        $c->log->debug("SimpleAuth sign_in: did not sign in user")
+            if $c->debug;
         return 0;
     }
 }
