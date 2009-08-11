@@ -1,6 +1,6 @@
 CHANGES file for Catalyst::Plugin::SimpleAuth:
 
-0.33
+0.33 Tue Aug 11 10:54:13 BST 2009
   - only print debugging messages under debug
 
 0.32 Wed Sep 10 20:42:44 BST 2008

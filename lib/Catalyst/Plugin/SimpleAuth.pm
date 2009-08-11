@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Digest::SHA1 qw(sha1_hex);
 use base qw/Class::Accessor::Fast/;
-our $VERSION = '0.32';
+our $VERSION = '0.33';
 use NEXT;
 use Catalyst::Exception;
 
