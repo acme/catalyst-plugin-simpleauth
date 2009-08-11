@@ -1,4 +1,4 @@
-CHANGES file for Catalyst::Plugin::CookiedSession:
+CHANGES file for Catalyst::Plugin::SimpleAuth:
 
 0.33
   - only print debugging messages under debug
